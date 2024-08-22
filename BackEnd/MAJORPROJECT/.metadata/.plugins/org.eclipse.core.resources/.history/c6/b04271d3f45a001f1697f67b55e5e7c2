@@ -1,0 +1,100 @@
+package com.app.services;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.dto.ApiResponse;
+import com.app.dto.UserDto;
+import com.app.entities.User;
+import com.app.exceptions.ResourceNotFoundException;
+import com.app.repositories.UserRepository;
+
+@Service
+@Transactional
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private UserRepository repo;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	public User authenticate(String email, String password) {
+        Optional<User> user = repo.findByEmail(email);
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
+            return user.get();
+        } else {
+            throw new RuntimeException("Invalid credentials");
+        }
+    }
+	
+	
+//	@Autowired
+//	private PasswordEncoder encoder;
+   // @Override
+//     public Signup userRegistration(Signup reqDTO) {
+//	//dto --> entity
+//	User user=mapper.map(reqDTO, User.class);
+//	if(repo.existsByEmail(reqDTO.getEmail()))
+//		throw new ApiException("Email already exists !!!");
+//	
+//	user.setPassword(encoder.encode(user.getPassword()));//pwd : encrypted using SHA
+//	return mapper.map(repo.save(user), Signup.class);
+//}
+
+	@Override
+	public List<UserDto> getAllUsers() {
+		
+		return repo.findAll()
+				.stream()
+				.map(user->mapper.map(user, UserDto.class))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public ApiResponse deleteUser(Long userId)  {
+		User deluser=repo.findById(userId)
+				.orElseThrow(()->new ResourceNotFoundException("Invalid User id"));
+		repo.delete(deluser);
+		return new ApiResponse("User with id "+deluser.getId()+" deleted");
+	}
+
+	@Override
+	public User addNewUser(User newuser) {
+		
+		return repo.save(newuser);
+	}
+
+	@Override
+	public User getUserDetails(Long id) {
+		User user=repo.findById(id)
+				.orElseThrow(()->new ResourceNotFoundException("Invalid Id"));
+		return user;
+	}
+
+	@Override
+	public ApiResponse updateUser(User u) {
+       if(repo.existsById(u.getId())) {
+		repo.save(u);
+		return new ApiResponse("User with id "+u.getId()+" updated successfully!!");
+       }
+       return new ApiResponse("Updation failed!!");
+	}
+
+//	@Override
+//	public UserDto getUserDetails(Long id) {
+//		
+//		User user=repo.findById(id)
+//				.orElseThrow(()->new ResourceNotFoundException("Invalid Id"));
+//		return mapper.map(user, UserDto.class);
+//	}
+	
+
+}

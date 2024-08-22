@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=spring_boot_backend_template/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.entities{BaseEntity.java[BaseEntity" modifiers="1" timestamp="1722261924105"/>
+    <typeInfo handle="=spring_boot_backend_template/C:\/Program Files\/Java\/jdk-11\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/11\/docs\/api\/=/&lt;java.lang(Exception.class[Exception" modifiers="33" timestamp="1713688144824"/>
+    <typeInfo handle="=spring_boot_backend_template/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.services{ProductService.java[ProductService" modifiers="513" timestamp="1723738669828"/>
+    <typeInfo handle="=spring_boot_backend_template/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.services{OrderService.java[OrderService" modifiers="513" timestamp="1723715146646"/>
+    <typeInfo handle="=spring_boot_backend_template/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.services{PaymentService.java[PaymentService" modifiers="513" timestamp="1722777379519"/>
+    <typeInfo handle="=spring_boot_backend_template/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.services{CartItemsService.java[CartItemsService" modifiers="513" timestamp="1722792112883"/>
+    <typeInfo handle="=spring_boot_backend_template/C:\/Users\/DELL\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/2.7.18\/spring-data-jpa-2.7.18.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/2.7.18=/=/maven.scope=/compile=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1716887740222"/>
+</typeInfoHistroy>

@@ -1,0 +1,65 @@
+package com.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.dto.OrderDto;
+import com.app.entities.Order;
+import com.app.services.OrderService;
+
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+	
+	@Autowired
+	private OrderService service;
+	
+	@GetMapping("/getallorders")
+	public ResponseEntity<?> getAllOrders()
+	{
+		return ResponseEntity.ok(service.getAllOrders());
+	}
+	
+	
+	
+	@DeleteMapping("/deleteorder/{id}")
+	public ResponseEntity<?> deleteOrder(@PathVariable Long id)
+	{
+		return ResponseEntity.ok(service.deleteOrder(id));
+	}
+	
+	
+	
+	@PostMapping("/addorder")
+	public ResponseEntity<?> addNewOrder(@RequestBody OrderDto r)
+	{
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(service.addNewOrder(r));
+	}
+	
+	
+	
+	@GetMapping("/getorderdetails/{id}")
+	public ResponseEntity<?> getOrderDetails(@PathVariable Long id)
+	{
+		return ResponseEntity.ok(service.getOrderDetails(id));
+	}
+	
+	@PutMapping("/updateorder")
+	public ResponseEntity<?> updateOrder(@RequestBody Order uporder)
+	{
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.updateOrder(uporder));
+	}
+
+}
